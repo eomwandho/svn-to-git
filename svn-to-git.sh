@@ -4,15 +4,17 @@
 
 echo -n "Enter the full path to the svn repository: "
 read svn_repository
-
+echo -n "Enter svn repository authors"
+read authors 
 echo "|- Creating a temporary directory for the script"
 mkdir -p /tmp/svn-to-git/
 cd /tmp/svn-to-git/
 rm -rf svn git git_fetched_svn_copy bare.git
 mkdir svn git
-
+touch authors.txt
+echo $authors > authors.txt
+exit
 echo "|- Checkout svn repository $svn_repository for generation authors.txt file"
-# ЛИБО предвалительно подготовить файл authors.txt, описание в общей статье по миграции и тогда не париться с выкачкой из svn
 # OR pre-prepare a file authors.txt, description of common article on migration and did not bathe with the pumping of the svn
 cd svn
 svn co $svn_repository .
